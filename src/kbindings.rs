@@ -407,7 +407,8 @@ extern "C" {
     pub fn m9() -> V;                       // garbage collect (?)
     pub fn sd1(arg1: I, arg2: Option<extern "C" fn(arg1: I) -> *const K>) -> *const K; // set callback
     pub fn sd0(arg1: I) -> V;                                            // remove callback
-
+    pub fn sd0x(arg1: I, arg2: I) -> V;  
+    
     pub fn dl(f: *mut V, arg1: I) -> *const K;     // dynamic link
 
     pub fn ja(arg1: *mut K, arg2: *mut V) -> *const K;     // join atom to list
@@ -462,6 +463,7 @@ extern "C" {
     pub fn m9() -> V;                       // garbage collect (?)
     pub fn sd1(arg1: I, arg2: Option<extern "C" fn(arg1: I) -> *const K>) -> *const K; // set callback
     pub fn sd0(arg1: I) -> V;                                            // remove callback
+    pub fn sd0x(arg1: I, arg2: I) -> V;  
     pub fn k(arg1: I, arg2: S, ...) -> *const K;   // local execution
 
     pub fn dl(f: *mut V, arg1: I) -> *const K;     // dynamic link
