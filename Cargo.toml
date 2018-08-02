@@ -12,6 +12,9 @@ bitflags = "*"
 nix = "*"
 lazy_static = "*"
 
+[build-dependencies]
+syn = {version = "*", features = ["full", "extra-traits"] }
+
 [lib]
 name = "krust"
 #crate-type = ["dylib", "bin"]
