@@ -55,7 +55,7 @@ fn main() {
     let syms = ksyms(src.to_str().unwrap());
 
     let dest_path = sym_file();
-    println!("{:?}", dest_path);
+
     let mut f = File::create(&dest_path)
         .expect("Could not create file to store external KDB symbols");
     
