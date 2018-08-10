@@ -156,9 +156,15 @@ impl<'a> KVal<'a> {
                 7  => KVal::Long(   KData::list(k)),
                 8  => KVal::Real(   KData::list(k)),
                 9  => KVal::Float(  KData::list(k)),
+                #[cfg(not(feature="unchecked_utf8"))]
                 10 => {
                     let s = std::str::from_utf8(k.fetch_slice::<u8>());
                     KVal::String(s.unwrap())
+                },
+                #[cfg(feature="unchecked_utf8")]
+                10 => {
+                    let s = std::str::from_utf8_unchecked(k.fetch_slice::<u8>());
+                    KVal::String(s)
                 },
                 11 => KVal::Symbol( KData::list(k)),
                 12 => KVal::Timestamp( KData::list(k)),

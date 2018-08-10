@@ -17,7 +17,7 @@ syn = {version = "*", features = ["full", "extra-traits"] }
 
 [lib]
 name = "krust"
-#crate-type = ["dylib", "bin"]
 
 [features]
 api = []
+unchecked_utf8 = [] # Use faster but unsafe string conversion
