@@ -23,11 +23,18 @@ pub struct K {
     pub union: [u8; 16],
 }
 
+impl K {
+    fn is_sorted(&self) -> bool {
+        self.u & 0x1 == 0x1
+    }
+}
+
 impl fmt::Debug for K {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let mut vs = Vec::new();
         vs.push(format!("Type:{}, Attr:{}, RefCt:{} Addr:{:p}",
                self.t, self.u, self.r, self));
+        vs.push(format!("Sorted:{}", self.is_sorted()));       
         let mut s = String::new();
         for v in self.union.iter() {
             s.push_str(&format!("{:02x}", v))
@@ -36,7 +43,6 @@ impl fmt::Debug for K {
         f.write_str(&vs.join("\n"))
     }
 }
-
 
 #[repr(C)]
 pub struct U {
