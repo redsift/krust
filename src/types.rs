@@ -24,8 +24,21 @@ pub struct K {
 }
 
 impl K {
+    // Attributes seem to be a sequence as opposed to bit flags
     fn is_sorted(&self) -> bool {
-        self.u & 0x1 == 0x1
+        self.u == 0x1
+    }
+
+    fn is_unique(&self) -> bool {
+        self.u == 0x2
+    }
+
+    fn is_parted(&self) -> bool {
+        self.u == 0x3
+    }
+
+    fn is_grouped(&self) -> bool {
+        self.u == 0x5
     }
 }
 
@@ -34,7 +47,8 @@ impl fmt::Debug for K {
         let mut vs = Vec::new();
         vs.push(format!("Type:{}, Attr:{}, RefCt:{} Addr:{:p}",
                self.t, self.u, self.r, self));
-        vs.push(format!("Sorted:{}", self.is_sorted()));       
+        vs.push(format!("Sorted:{}, Unique:{}, Parted:{}, Grouped:{}", 
+                self.is_sorted(), self.is_unique(), self.is_parted(), self.is_grouped()));       
         let mut s = String::new();
         for v in self.union.iter() {
             s.push_str(&format!("{:02x}", v))
